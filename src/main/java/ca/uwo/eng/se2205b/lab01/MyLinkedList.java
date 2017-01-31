@@ -100,8 +100,7 @@ public class MyLinkedList<T> extends AbstractList<T> {
     }
 
 
-    public T get(int a)
-    {
+    public T get(int a) {
         Node it = m_head;
         int count = 0;
         while(it!=null && count<a)

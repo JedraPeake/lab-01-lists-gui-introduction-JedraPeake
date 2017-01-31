@@ -17,6 +17,8 @@ public class MyArrayList<T> extends AbstractList<T> {
     public MyArrayList(List<? extends T> base) {
         //myArray = (T[])(new Object[startCapacity]);
         myArray = (T[])base.toArray();// new Object[startCapacity]);
+        size = base.size();
+        capacity = base.size();
     }
 
     @SuppressWarnings("unchecked")
@@ -62,53 +64,72 @@ public class MyArrayList<T> extends AbstractList<T> {
     }
 
     @Override
-    public int indexOf(Object o)throws NullPointerException{
+    public int indexOf(Object o){
         if(o == null) {
-            throw new NullPointerException();
+            for (int i = 0; i < size(); i++ ) {
+                if(myArray[i] == null){
+                    return i;
+                }
+            }
         }
-        for(int i = 0; i < size; i++) {
-            if(myArray[i].equals(o)) {
-                return i;
+        else {
+            for (int i = 0; i < size; i++) {
+                if(myArray [i] != null && myArray [i].equals(o)){
+                    return i;
+                }
             }
         }
         return -1;
     }
 
     @Override
-    public void add(int i, T e){//throws IndexOutOfBoundsException{
+    public void add(int i, T e)throws IndexOutOfBoundsException{
         checkIndex(i,size+1);
-        if(size == capacity){
-            resize(2*myArray.length);
-        }
+//        if(size == capacity){
+//            resize(2*myArray.length);
+//        }
+        resize();
         for(int k=size-1;k>=i;k--){
             myArray[k+1]=myArray[k];
         }
         myArray[i]=e;
         size++;
-        System.out.println("adding i"+i +"e "+e);
-        System.out.println("size is" + size);
     }
 
     @Override
     public boolean add(T e){
-        if(size == myArray.length){
-            resize(2*myArray.length);
-        }
+//        if(size == myArray.length){
+//            resize(2*myArray.length);
+//        }
+       resize();
+
         this.myArray[size++] = e;
         return true;
     }
 
     protected void checkIndex(int i, int n) throws IndexOutOfBoundsException{
-        if(i<0 || i >= n)
+        if((i<0) || (i >= n))
             throw new IndexOutOfBoundsException("Illegal index: "+ i);
     }
 
-    protected void resize(int capacity){
-        T[] temp = (T[])new Object[capacity];
-        for(int i = 0; i<size;i++){
-            temp[i]=myArray[i];
+    protected void resize(){
+//        T[] temp = (T[])new Object[capacity];
+//        for(int i = 0; i<size;i++){
+//            temp[i]=myArray[i];
+//        }
+//        myArray=temp;
+        if (size() >= capacity && capacity != 0) {
+            T[] newM = myArray;
+            capacity *= 2;
+            myArray = (T[]) new Object[capacity];
+            System.arraycopy(newM, 0, myArray, 0, size());
+
         }
-        myArray=temp;
+        else if(size() >= capacity && capacity == 0) {
+            T[] newM = myArray;
+            capacity = 10;
+            myArray = (T[]) new Object[capacity];
+        }
     }
 
     @Override
