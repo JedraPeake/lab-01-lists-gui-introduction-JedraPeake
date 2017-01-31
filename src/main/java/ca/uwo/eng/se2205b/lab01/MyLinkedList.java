@@ -1,10 +1,11 @@
 package ca.uwo.eng.se2205b.lab01;
 
+import java.util.AbstractList;
 import java.util.List;
 /**
  * Doubly linked list implementation
  */
-public class MyLinkedList<T> {
+public class MyLinkedList<T> extends AbstractList<T> {
 
     public MyLinkedList(List<? extends T> base) {
         m_head = new Node<> (null,null,null);
@@ -50,6 +51,7 @@ public class MyLinkedList<T> {
         return remove(m_head.getNext( )); // first element is beyond header
     }
 
+
     public T removeLast( ) {
         if (isEmpty( )) {
             return null;
@@ -57,12 +59,14 @@ public class MyLinkedList<T> {
         return remove(m_tail.getPrev( )); // last element is before trailer
     }
 
+
     public boolean equals(Object o) {
         if (o == null) {
             return false;
         }
         return true;
     }
+
 
     public String toString(){
         String string="a";
@@ -93,6 +97,22 @@ public class MyLinkedList<T> {
         public void setNext(Node<T> n) {
             next = n;
         }
+    }
+
+
+    public T get(int a)
+    {
+        Node it = m_head;
+        int count = 0;
+        while(it!=null && count<a)
+        {
+            it = it.next;
+        }
+
+        if(it!=null)
+            return (T) it.getElement();
+        else
+            return null;
     }
 
     public static void main(String[] args) {

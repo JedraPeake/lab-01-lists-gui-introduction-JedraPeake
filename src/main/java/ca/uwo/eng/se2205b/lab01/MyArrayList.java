@@ -1,31 +1,39 @@
 package ca.uwo.eng.se2205b.lab01;
 
-import java.util.List;
 import java.util.AbstractList;
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Array List implementation
  */
-public class MyArrayList<T> {
+public class MyArrayList<T> extends AbstractList<T> {
 
     private int size;
-    private T myArray[];
+    private T[] myArray;
     private int capacity;
-    private static final int startCapacity=10;
 
     @SuppressWarnings("unchecked")
     public MyArrayList(List<? extends T> base) {
-        myArray = (T[])(new Object[startCapacity]);
+        //myArray = (T[])(new Object[startCapacity]);
+        myArray = (T[])base.toArray();// new Object[startCapacity]);
     }
 
     @SuppressWarnings("unchecked")
     public MyArrayList(int initialCapacity) {
-        myArray = (T[])(new Object[initialCapacity]);
+        capacity = initialCapacity;
+        size = 0;
+        myArray = (T[]) new Object[capacity];
+        //myArray = (T[])(new Object[initialCapacity]);
     }
 
+    @Override
     public int size(){return size;}
 
+    @Override
     public boolean isEmpty(){return size==0;}
 
+    @Override
     public boolean remove(Object o){
         int indexOfO = indexOf(o);
 
@@ -37,6 +45,7 @@ public class MyArrayList<T> {
         return true;
     }
 
+    @Override
     public T remove(int index){
         if(index < 0 || index >= size) {
             throw new ArrayIndexOutOfBoundsException(index);
@@ -52,6 +61,7 @@ public class MyArrayList<T> {
         return temp;
     }
 
+    @Override
     public int indexOf(Object o)throws NullPointerException{
         if(o == null) {
             throw new NullPointerException();
@@ -64,9 +74,10 @@ public class MyArrayList<T> {
         return -1;
     }
 
-    public void add(int i, T e)throws IndexOutOfBoundsException{
+    @Override
+    public void add(int i, T e){//throws IndexOutOfBoundsException{
         checkIndex(i,size+1);
-        if(size == myArray.length){
+        if(size == capacity){
             resize(2*myArray.length);
         }
         for(int k=size-1;k>=i;k--){
@@ -78,13 +89,12 @@ public class MyArrayList<T> {
         System.out.println("size is" + size);
     }
 
+    @Override
     public boolean add(T e){
         if(size == myArray.length){
             resize(2*myArray.length);
         }
-        System.out.println(size);
-        myArray[size++] = e;
-        System.out.println(size);
+        this.myArray[size++] = e;
         return true;
     }
 
@@ -101,22 +111,31 @@ public class MyArrayList<T> {
         myArray=temp;
     }
 
-    public boolean equals(Object obj){
-        return true;
+    @Override
+    public boolean equals(Object o){
+        if(! (o instanceof List<?>)) {
+            return false;
+        }
+        if(o == this) {
+            return true;
+        }
+
+        ArrayList<T> tmp = (ArrayList<T>)o;
+
+        if(this.size() == tmp.size()) {
+            for(int i = 0; i < this.size(); i++ ) {
+                if ( this.get(i) == null && this.get(i) != tmp.get(i)) {
+                    return false;
+                } else if (this.get(i) != null && !(this.get(i)).equals(tmp.get(i))) {
+                    return false;
+                }
+            }
+            return true;
+        }
+        return false;
     }
 
-    public T get(int i) throws IndexOutOfBoundsException{
-        checkIndex(i,size);
-        return myArray[i];
-    }
-
-    public T set(int i, T e) throws IndexOutOfBoundsException{
-        checkIndex(i,size);
-        T temp = myArray[i];
-        myArray[i]=e;
-        return temp;
-    }
-
+    @Override
     public String toString(){
         String results = "[";
         for( int i =0; i< size; i++) {
@@ -126,20 +145,25 @@ public class MyArrayList<T> {
             else {
                 results += "," + myArray[i].toString();
             }
-            System.out.println("trying "+myArray[i]);
         }
         return results +"]";
     }
 
+    @Override
+    public T get(int index) throws IndexOutOfBoundsException{   //throw-in check-index
+        checkIndex(index,size);
+        return myArray[index];
+    }
+
+    @Override
+    public T set(int index, T e) throws IndexOutOfBoundsException{      //throw-in check-index
+        checkIndex(index,size);
+        T temp = myArray[index];
+        myArray[index]=e;
+        return temp;
+    }
+
     public static void main(String[] args) {
-        MyArrayList test = new MyArrayList<>(1);
-        test.add(0,2);
-        String s =test.toString();
-        System.out.println(s);
-        test.add(1);
-        s=test.toString();
-        System.out.println(s);
-        test.remove(2);
 
 
     }
