@@ -24,7 +24,6 @@ public class MyArrayList<T> extends AbstractList<T> {
         capacity = initialCapacity;
         size = 0;
         myArray = (T[]) new Object[capacity];
-        //myArray = (T[])(new Object[initialCapacity]);
     }
 
     @Override
@@ -46,10 +45,8 @@ public class MyArrayList<T> extends AbstractList<T> {
     }
 
     @Override
-    public T remove(int index){
-        if(index < 0 || index >= size) {
-            throw new ArrayIndexOutOfBoundsException(index);
-        }
+    public T remove(int index)throws IndexOutOfBoundsException{
+        checkIndex(index, size);    //throws.
 
         T temp = myArray[index];
 
@@ -82,11 +79,8 @@ public class MyArrayList<T> extends AbstractList<T> {
 
     @Override
     public void add(int i, T e)throws IndexOutOfBoundsException{
-        checkIndex(i,size+1);
-//        if(size == capacity){
-//            resize(2*myArray.length);
-//        }
-        resize();
+        checkIndex(i,size+1);   //throws exception.
+        checkSize();
         for(int k=size-1;k>=i;k--){
             myArray[k+1]=myArray[k];
         }
@@ -96,11 +90,7 @@ public class MyArrayList<T> extends AbstractList<T> {
 
     @Override
     public boolean add(T e){
-//        if(size == myArray.length){
-//            resize(2*myArray.length);
-//        }
-       resize();
-
+       checkSize();
         this.myArray[size++] = e;
         return true;
     }
@@ -110,21 +100,14 @@ public class MyArrayList<T> extends AbstractList<T> {
             throw new IndexOutOfBoundsException("Illegal index: "+ i);
     }
 
-    private void resize(){
-//        T[] temp = (T[])new Object[capacity];
-//        for(int i = 0; i<size;i++){
-//            temp[i]=myArray[i];
-//        }
-//        myArray=temp;
+    private void checkSize(){
         if (size() >= capacity && capacity != 0) {
             T[] newM = myArray;
             capacity *= 2;
             myArray = (T[]) new Object[capacity];
             System.arraycopy(newM, 0, myArray, 0, size());
-
         }
         else if(size() >= capacity && capacity == 0) {
-            T[] newM = myArray;
             capacity = 10;
             myArray = (T[]) new Object[capacity];
         }
@@ -139,7 +122,6 @@ public class MyArrayList<T> extends AbstractList<T> {
             return true;
         }
 
-        //ArrayList<?> tmp = (ArrayList<?>) o;
         List<?> tmp = (List<?>)o;
 
         if(size() == tmp.size()) {
@@ -167,20 +149,19 @@ public class MyArrayList<T> extends AbstractList<T> {
                 sb.append(", ");
                 sb.append(myArray[i]);
             }
-
         }
         return sb +"]";
     }
 
     @Override
-    public T get(int index) throws IndexOutOfBoundsException{   //throw-in check-index
-        checkIndex(index,size);
+    public T get(int index) throws IndexOutOfBoundsException{
+        checkIndex(index,size);     //throws
         return myArray[index];
     }
 
     @Override
-    public T set(int index, T e) throws IndexOutOfBoundsException{      //throw-in check-index
-        checkIndex(index,size);
+    public T set(int index, T e) throws IndexOutOfBoundsException{
+        checkIndex(index,size);     //throws
         T temp = myArray[index];
         myArray[index]=e;
         return temp;

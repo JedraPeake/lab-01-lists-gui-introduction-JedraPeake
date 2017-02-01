@@ -23,13 +23,13 @@ import java.lang.String;
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
         ListTests.LinkedListTests.class,
-        ListTests.ArrayListTests.class
+        //ListTests.ArrayListTests.class
 })
 public class ListTests {
 
-    /**
-     * Test your implementation of a doubly linked list.
-     */
+//    /**
+//     * Test your implementation of a doubly linked list.
+//     */
     public static class LinkedListTests {
 
         public static TestSuite suite() {
@@ -82,20 +82,20 @@ public class ListTests {
          * @return An instance of {@link TestSuite} for collection testing.
          */
         public static TestSuite suite() {
-            /**
-             * guava-testlib has a host of test suite builders available,
-             * all descending from {@link FeatureSpecificTestSuiteBuilder}.
-             * The
-             * {@link FeatureSpecificTestSuiteBuilder#usingGenerator(Object)}
-             * is the main entry point in that collections are tested by
-             * implementing {@link TestCollectionGenerator} and providing an
-             * instance of the interface to the test suite builder via the
-             * #usingGenerator(Object) method. Most of suite builder classes
-             * provide a convenience method such as
-             * {@link ListTestSuiteBuilder.using()} that streamline the process
-             * of creating a builder.
-             *
-             */
+//            /**
+//             * guava-testlib has a host of test suite builders available,
+//             * all descending from {@link FeatureSpecificTestSuiteBuilder}.
+//             * The
+//             * {@link FeatureSpecificTestSuiteBuilder#usingGenerator(Object)}
+//             * is the main entry point in that collections are tested by
+//             * implementing {@link TestCollectionGenerator} and providing an
+//             * instance of the interface to the test suite builder via the
+//             * #usingGenerator(Object) method. Most of suite builder classes
+//             * provide a convenience method such as
+//             * {@link ListTestSuiteBuilder.using()} that streamline the process
+//             * of creating a builder.
+//             *
+//             */
             return ListTestSuiteBuilder
                     // The create method is called with an array of elements
                     // that should populate the collection.
