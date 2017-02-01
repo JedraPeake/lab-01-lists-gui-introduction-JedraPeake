@@ -22,7 +22,7 @@ import java.lang.String;
  */
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
-        //ListTests.LinkedListTests.class,
+        ListTests.LinkedListTests.class,
         ListTests.ArrayListTests.class
 })
 public class ListTests {
@@ -30,39 +30,39 @@ public class ListTests {
     /**
      * Test your implementation of a doubly linked list.
      */
-//    public static class LinkedListTests {
-//
-//        public static TestSuite suite() {
-//            /**
-//             * This "Builder" pattern: https://en.wikipedia.org/wiki/Builder_pattern, creates a Test Suite that will
-//             * run your List implementation and test that it matches the contracts in the List interface.
-//             */
-//            return ListTestSuiteBuilder
-//                    // The create method is called with an array of elements
-//                    // that should populate the collection.
-//                    .using(new TestStringListGenerator() {
-//
-//                        @Override
-//                        protected List<String> create(String[] elements) {
-//                            return new MyLinkedList<>(Arrays.asList(elements));
-//                        }
-//
-//                    })
-//                    .named("LinkedList tests")
-//                    // The following defines the features of lists we care about
-//                    .withFeatures(
-//                            ListFeature.GENERAL_PURPOSE,
-//                            ListFeature.SUPPORTS_ADD_WITH_INDEX,
-//                            ListFeature.SUPPORTS_REMOVE_WITH_INDEX,
-//                            ListFeature.SUPPORTS_SET,
-//                            CollectionFeature.SUPPORTS_ADD,
-//                            CollectionFeature.SUPPORTS_REMOVE,
-//                            CollectionFeature.ALLOWS_NULL_VALUES,
-//                            CollectionFeature.GENERAL_PURPOSE,
-//                            CollectionSize.ANY
-//                    ).createTestSuite();
-//        }
-//    }
+    public static class LinkedListTests {
+
+        public static TestSuite suite() {
+            /**
+             * This "Builder" pattern: https://en.wikipedia.org/wiki/Builder_pattern, creates a Test Suite that will
+             * run your List implementation and test that it matches the contracts in the List interface.
+             */
+            return ListTestSuiteBuilder
+                    // The create method is called with an array of elements
+                    // that should populate the collection.
+                    .using(new TestStringListGenerator() {
+
+                        @Override
+                        protected List<String> create(String[] elements) {
+                            return new MyLinkedList<>(Arrays.asList(elements));
+                        }
+
+                    })
+                    .named("LinkedList tests")
+                    // The following defines the features of lists we care about
+                    .withFeatures(
+                            ListFeature.GENERAL_PURPOSE,
+                            ListFeature.SUPPORTS_ADD_WITH_INDEX,
+                            ListFeature.SUPPORTS_REMOVE_WITH_INDEX,
+                            ListFeature.SUPPORTS_SET,
+                            CollectionFeature.SUPPORTS_ADD,
+                            CollectionFeature.SUPPORTS_REMOVE,
+                            CollectionFeature.ALLOWS_NULL_VALUES,
+                            CollectionFeature.GENERAL_PURPOSE,
+                            CollectionSize.ANY
+                    ).createTestSuite();
+        }
+    }
 
     /**
      * Test the ArrayList implementation

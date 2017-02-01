@@ -1,7 +1,6 @@
 package ca.uwo.eng.se2205b.lab01;
 
 import java.util.AbstractList;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -15,8 +14,7 @@ public class MyArrayList<T> extends AbstractList<T> {
 
     @SuppressWarnings("unchecked")
     public MyArrayList(List<? extends T> base) {
-        //myArray = (T[])(new Object[startCapacity]);
-        myArray = (T[])base.toArray();// new Object[startCapacity]);
+        myArray = (T[])base.toArray();
         size = base.size();
         capacity = base.size();
     }
@@ -107,12 +105,12 @@ public class MyArrayList<T> extends AbstractList<T> {
         return true;
     }
 
-    protected void checkIndex(int i, int n) throws IndexOutOfBoundsException{
+    private void checkIndex(int i, int n) throws IndexOutOfBoundsException{
         if((i<0) || (i >= n))
             throw new IndexOutOfBoundsException("Illegal index: "+ i);
     }
 
-    protected void resize(){
+    private void resize(){
 //        T[] temp = (T[])new Object[capacity];
 //        for(int i = 0; i<size;i++){
 //            temp[i]=myArray[i];
@@ -141,13 +139,14 @@ public class MyArrayList<T> extends AbstractList<T> {
             return true;
         }
 
-        ArrayList<T> tmp = (ArrayList<T>)o;
+        //ArrayList<?> tmp = (ArrayList<?>) o;
+        List<?> tmp = (List<?>)o;
 
-        if(this.size() == tmp.size()) {
-            for(int i = 0; i < this.size(); i++ ) {
-                if ( this.get(i) == null && this.get(i) != tmp.get(i)) {
+        if(size() == tmp.size()) {
+            for(int i = 0; i < size(); i++ ) {
+                if ( get(i) == null && get(i) != tmp.get(i)) {
                     return false;
-                } else if (this.get(i) != null && !(this.get(i)).equals(tmp.get(i))) {
+                } else if (get(i) != null && !(get(i)).equals(tmp.get(i))) {
                     return false;
                 }
             }
@@ -158,16 +157,19 @@ public class MyArrayList<T> extends AbstractList<T> {
 
     @Override
     public String toString(){
-        String results = "[";
+        StringBuilder sb = new StringBuilder();
+        sb.append("["); //= "[";
         for( int i =0; i< size; i++) {
             if(i==0){
-                results += myArray[i].toString();
+                sb.append(myArray[i]);
             }
             else {
-                results += "," + myArray[i].toString();
+                sb.append(", ");
+                sb.append(myArray[i]);
             }
+
         }
-        return results +"]";
+        return sb +"]";
     }
 
     @Override
@@ -182,11 +184,6 @@ public class MyArrayList<T> extends AbstractList<T> {
         T temp = myArray[index];
         myArray[index]=e;
         return temp;
-    }
-
-    public static void main(String[] args) {
-
-
     }
 }
 
