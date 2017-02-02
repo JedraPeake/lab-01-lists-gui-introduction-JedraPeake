@@ -16,5 +16,7 @@ Unit Tests allow the coder to make big changes to code quickly. You then can ins
 ![alt tag](https://raw.githubusercontent.com/uwoece-se2205b-2017/lab-01-lists-gui-introduction-JedraPeake/master/success.PNG?token=AXFuEcCHl2T1jNOLDiq059Ca6ksasplgks5YnLVEwA%3D%3D)
 ![alt tag](https://raw.githubusercontent.com/uwoece-se2205b-2017/lab-01-lists-gui-introduction-JedraPeake/master/failed.PNG?token=AXFuESphsif0TIuOgbdKmURQdBdAnGAvks5YnLUrwA%3D%3D)
 ###1)
+This separation of the presentation and application logic is attractive to web developers because they can assemble a UI that leverages Java components without mastering the code for fetching and filling in the data. The code is also a lot easier to follow and read.
 ###2)
+You can drag and drop UI components to a JavaFX Content pane, and the tool generates the FXML code that can be used in an IDE, so you dont have to code it.
 ###3)
