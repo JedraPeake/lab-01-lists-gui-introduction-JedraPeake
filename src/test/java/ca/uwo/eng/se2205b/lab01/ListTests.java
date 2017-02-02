@@ -23,7 +23,7 @@ import java.lang.String;
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
         ListTests.LinkedListTests.class,
-        //ListTests.ArrayListTests.class
+        ListTests.ArrayListTests.class
 })
 public class ListTests {
 
