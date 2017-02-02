@@ -3,14 +3,12 @@
 ###1)
 ###2)
 ###3)
-```add()
-```
-```remove()
-```
-```get()
-``` 
-```set())
-```
+######add() and remove() -same
+The add and remove for the Arraylist has a time complexity of O(n), because the remaining elements in an array have to be shifted left or right, however the linkedlist has to traverse from node to node if its node is not at the front or back of the list, therefore at a worst case O(n) complexity. 
+
+######get() and set() -different
+The get and set for the Arraylist has a time complexity of O(1), as they can just access an element at the n'th spot, however the linkedlist has to traverse from node to node, therefore it has an O(n) complexity.
+
 ###4)
 Unit Tests allow the coder to make big changes to code quickly. You then can instantly find out  whether or not the code works through multiple scenarios through testing, it can also help you identify errors just as fast and hopefully get it up and runnig. In addition, unit tests help you really understand the design of the code you are working on. Instead of writing code to do just do something for one problem, you are starting by outlining all the conditions you are subjecting the code to (the contracts) and what outputs you'd expect from that.
 
