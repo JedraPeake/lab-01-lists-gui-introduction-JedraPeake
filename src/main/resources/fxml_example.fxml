@@ -18,11 +18,11 @@
 
     <Label text="User Name:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
 
-    <TextField promptText="userText" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+    <TextField fx:id="txtUsername" GridPane.columnIndex="1" GridPane.rowIndex="1" />
 
     <Label text="Password:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
 
-    <PasswordField fx:id="passwordField" promptText="passText" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+    <PasswordField fx:id="txtPassword" GridPane.columnIndex="1" GridPane.rowIndex="2" />
 
     <HBox alignment="bottom_right" spacing="10" GridPane.columnIndex="1" GridPane.rowIndex="4">
         <Button onAction="#handleSubmitButtonAction" text="Sign In" />
