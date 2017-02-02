@@ -24,3 +24,10 @@ This separation of the presentation and application logic is attractive to web d
 You can drag and drop UI components to a JavaFX Content pane, and the tool generates the FXML code that can be used in an IDE, so you dont have to code it.
 
 ###3)What are a callbacks and why does JavaFX use them?
+The interface looks like this:
+```
+public interface Callback<P,R> {
+    public R call(P param);
+}
+```
+We end up writing less code. No specialized interface, no default implementations.
