@@ -1,8 +1,10 @@
 # Question 1:Implementing: Lists
 ![alt tag](https://raw.githubusercontent.com/uwoece-se2205b-2017/lab-01-lists-gui-introduction-JedraPeake/master/Capture.PNG?token=AXFuEdHL6FB_2EdnHzdaEwTnTQwgCKxMks5YnLTPwA%3D%3D)
 ###1)In an ideal scenario, what other methods should be overridden to improve performance?
+The iterator on both lists
 
 ###2)Why is the iteration of an ArrayList and LinkedList not the same speed (not complexity, actual speed)? Which one is most likely faster?
+Iteration of my linkedlist appears to be quicker in speed, probably because the insert and remove operations give good performance O(1) in LinkedList compared to ArrayListO(n). Hence if there is a requirement of frequent addition and deletion in application then LinkedList is a best choice, which is why it might be faster. 
 
 ###3)Is the big-Oh complexity of the four main operations identical between the List types (add(), remove(), get() and set())?
 ######add() and remove() -same
